@@ -1,0 +1,21 @@
+name: Testing Jobs
+on:
+  workflow_dispatch:
+
+jobs:
+  PrimerJob:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Exec ok
+      run: echo 'ok'
+  SegundoJob:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Exec fail
+      run: exit 1
+  WaitJob:
+    needs: [PrimerJob, SegundoJob]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Exec fail
+      run: echo 'todo ok'
