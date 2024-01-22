@@ -17,6 +17,7 @@ jobs:
               ips="${{ vars.DISTINCT_IPS }}"
               matrix=$(echo $ips | jq -cR 'split (",") | .[]' | jq -s '[.[] | { machine: . }]' | jq -c '{ include: . }')
               echo "matrix=$ips" >> "$GITHUB_OUTPUT"
+              echo $matrix
 
   machine:
     name: Team
