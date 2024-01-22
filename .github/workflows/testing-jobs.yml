@@ -6,8 +6,10 @@ jobs:
   PrimerJob:
     runs-on: ubuntu-latest
     steps:
-    - name: Exec ok
-      run: echo 'ok'
+    - name: Exec fail
+      run: echo 'fail'
+    - name: Exec fail
+      run: exit 1
   SegundoJob:
     runs-on: ubuntu-latest
     steps:
