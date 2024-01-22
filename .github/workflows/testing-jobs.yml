@@ -15,7 +15,7 @@ jobs:
       run: exit 1
   WaitJob:
     # needs: [PrimerJob, SegundoJob]
-    if: ${{ jobs.PrimerJob.status == 'success' || jobs.PrimerJob.status == 'success' }}
+    if: jobs.PrimerJob.status == 'success' || jobs.PrimerJob.status == 'success'
     runs-on: ubuntu-latest
     steps:
     - name: Exec fail
