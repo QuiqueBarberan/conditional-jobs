@@ -15,9 +15,9 @@ jobs:
           id: matrix
           run: |
               ips="${{ vars.DISTINCT_IPS }}"
-              matrix=$(echo $ips | jq -cR 'split (",") | .[]' | jq -s '[.[] | { machine: . }]' | jq -c '{ include: . }')
-              # echo "matrix=$ips" >> "$GITHUB_OUTPUT"
-              echo "matrix={\"include\":[{\"machine\":\"1.2.3.4\"},{\"machine\":\"2.3.4.5\"}]}" >> "$GITHUB_OUTPUT"
+              matrix=$(echo $ips | jq -cR 'split (",") | .[]' | jq -s '[.[] | { machine: . }]' | jq -c '{ include: . }' | sed 's/"/\\"/g')
+              echo "matrix=$ips" >> "$GITHUB_OUTPUT"
+              # echo "matrix={\"include\":[{\"machine\":\"1.2.3.4\"},{\"machine\":\"2.3.4.5\"}]}" >> "$GITHUB_OUTPUT"
               echo $matrix
 
   machine:
