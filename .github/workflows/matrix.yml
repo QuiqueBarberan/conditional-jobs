@@ -1,0 +1,31 @@
+name: Test/Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  matrix:
+    name: Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: |
+          ${{ steps.matrix.outputs.matrix }}        
+    steps:
+        - name: Outputs matrix
+          id: matrix
+          run: |
+              ips="${{ secrets.DISTINCT_IPS }}"
+              matrix=$(echo $ips | jq -cR 'split (",") | .[]' | jq -s '[.[] | { machine: . }]' | jq -c '{ include: . }')
+              echo "matrix=$ips" >> "$GITHUB_OUTPUT"
+
+  machine:
+    name: Team
+    needs: [matrix]
+    runs-on: ubuntu-latest
+    if: ${{ fromJson(needs.matrix.outputs.matrix).include[0] }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
+    steps:
+        - name: Show value
+          run: echo ${{ matrix.machine }}
