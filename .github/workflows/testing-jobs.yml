@@ -14,8 +14,8 @@ jobs:
     - name: Exec fail
       run: exit 1
   WaitJob:
-    # needs: [PrimerJob, SegundoJob]
-    if: jobs.PrimerJob.status == 'success' || jobs.PrimerJob.status == 'success'
+    needs: [PrimerJob, SegundoJob]
+    if: needs.PrimerJob.status == 'success' || needs.PrimerJob.status == 'success'
     runs-on: ubuntu-latest
     steps:
     - name: Exec fail
