@@ -11,8 +11,6 @@ jobs:
   machine:
     name: Team
     runs-on: ubuntu-latest
-    env:
-      ENTORNO: ${{ inputs.ENTORNO   }}
     steps:
       - name: Show value
         shell: bash
