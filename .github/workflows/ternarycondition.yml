@@ -1,4 +1,4 @@
-name: Test/Deploy
+name: Conditional inside a step
 
 on:
   workflow_dispatch:
