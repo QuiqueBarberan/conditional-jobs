@@ -5,12 +5,9 @@ on:
     inputs:
       entorno:
         required: true
+        description: entorno puede ser 'vacio', 'pre', 'prod'
         default: ''
-        type: choice
-        options:
-          - ''
-          - pre
-          - prod
+        type: string
 jobs:
   machine:
     name: Team
