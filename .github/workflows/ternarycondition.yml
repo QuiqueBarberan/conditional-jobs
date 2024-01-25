@@ -6,10 +6,11 @@ on:
       word:
         type: string
         default: ''
+
 jobs:
   machine:
     name: Team
     runs-on: ubuntu-latest
     steps:
-        - name: Show value
-          run: echo ${{ if inputs.word != '' then concat('--env=', inputs.word) end }}
+      - name: Show value
+        run: echo ${{ inputs.word != '' ? "--env=${{ inputs.word }}" : '' }}
