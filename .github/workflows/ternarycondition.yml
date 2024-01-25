@@ -8,8 +8,8 @@ on:
         default: ''
         type: choice
         options:
-          - pre
           - ''
+          - pre
           - prod
 jobs:
   machine:
