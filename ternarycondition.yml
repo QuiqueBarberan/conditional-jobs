@@ -1,0 +1,15 @@
+name: Test/Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        type: string
+        default: ''
+jobs:
+  machine:
+    name: Team
+    runs-on: ubuntu-latest
+    steps:
+        - name: Show value
+          run: echo ${{ if inputs.word != '' then concat('--env=', inputs.word) end }}
