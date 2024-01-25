@@ -12,10 +12,10 @@ jobs:
     name: Team
     runs-on: ubuntu-latest
     env:
-      ENTORNO: ${{ inputs.ENTORNO }}
+      ENTORNO: ${{ inputs.ENTORNO   }}
     steps:
       - name: Show value
         shell: bash
         run: |
-          paramenv=$([ '$ENTORNO'  ] && echo "--env=$ENTORNO")
+          paramenv=" $([[ -n "${{ github.event.inputs.ENTORNO }}" ]] && echo "--env=${{ github.event.inputs.ENTORNO }}")"
           echo $paramenv
