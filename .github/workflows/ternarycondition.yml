@@ -4,9 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       entorno:
-        type: string
+        required: true
         default: ''
-
+        type: choice
+        options:
+          - pre
+          - prod
 jobs:
   machine:
     name: Team
