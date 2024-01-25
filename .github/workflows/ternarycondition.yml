@@ -13,4 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show value
-        run: echo $(( '${{ inputs.word }}' != '' ? '--env=${{ inputs.word }}' ))
+        run: |
+          paramenv=$([ ${{ inputs.word }}  ] && echo "--env=${{ inputs.word }}")
+          echo $paramenv
