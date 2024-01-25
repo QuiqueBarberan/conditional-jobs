@@ -3,7 +3,7 @@ name: Conditional inside a step
 on:
   workflow_dispatch:
     inputs:
-      word:
+      entorno:
         type: string
         default: ''
 
@@ -11,8 +11,11 @@ jobs:
   machine:
     name: Team
     runs-on: ubuntu-latest
+    env:
+      ENTORNO: |
+        ${{ inputs.entorno != "" && ("--env=" + inputs.entorno) }}
     steps:
       - name: Show value
         run: |
-          paramenv=$([ '${{ inputs.word }}' ] && echo "--env=${{ inputs.word }}")
+          paramenv=$ENTORNO
           echo $paramenv
