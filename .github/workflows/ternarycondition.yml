@@ -15,6 +15,7 @@ jobs:
       ENTORNO: ${{ inputs.ENTORNO }}
     steps:
       - name: Show value
+        shell: bash
         run: |
-          paramenv=$([ $ENTORNO  ] && echo "--env=$ENTORNO")
+          paramenv=$([ '$ENTORNO'  ] && echo "--env=$ENTORNO")
           echo $paramenv
